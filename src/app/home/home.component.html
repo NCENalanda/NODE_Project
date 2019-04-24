@@ -1,0 +1,20 @@
+<h1>Hi {{currentUser.firstName}}!</h1>
+<p>You're logged in with Angular 7!!</p>
+
+{{currentUser | json}}
+    <label >Personal Information</label>&nbsp;&nbsp;
+    
+    <div *ngIf="flag">
+            <button (click)="save()">save</button><button (click)="cancel()">cancel</button>
+        <input [(ngModel)]="currentUser.firstName">
+        <input [(ngModel)]="currentUser.lastName">
+    </div>
+    <div *ngIf="!flag">
+    
+    <button (click)="edit()">Edit</button><br>
+    <label>Userame:&nbsp;&nbsp;&nbsp;&nbsp;{{currentUser.username}}</label>
+    <label>FirstName:&nbsp;&nbsp;&nbsp;&nbsp;{{currentUser.firstName}}</label><br>
+    <label>LastName:&nbsp;&nbsp;&nbsp;&nbsp;{{currentUser.lastName}}</label><br>
+    <button>Update Profile</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+
