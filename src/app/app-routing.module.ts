@@ -1,3 +1,5 @@
+import { ProfileComponent } from './profile/profile.component';
+import { PaginationComponent } from './pagination/pagination.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -10,6 +12,8 @@ const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'pagination', component: PaginationComponent },
+    { path: 'profile', component: ProfileComponent },
     { path: 'admin', component: AdminComponent },
 
     // otherwise redirect to home

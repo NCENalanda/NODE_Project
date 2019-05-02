@@ -2,7 +2,7 @@ import { PagerService } from './../_services/pager.service';
 import { AlertService } from './../_services/alert.service';
 import { AdminService } from './../_services/admin.service';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-admin',
@@ -11,33 +11,26 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AdminComponent implements OnInit {
 
-  users = [];
-  flag = false;
-  pager: any = {};
-  // paged items
-  pagedItems: any[];
+  users: any[] = [];
+  flag = false; flag1 = false;
+  images = [];
   // array of all items to be paged
-  private allItems: any[];
+  private allItems = new Array();
   constructor(private adminService: AdminService,
-              private alertService: AlertService,
-              private http: HttpClient,
-              private pagerService: PagerService) { }
+              private alertService: AlertService
+              ) { }
 
   ngOnInit() {
-    // get dummy data
-    this.http.get('./dummy-data.json')
-    .subscribe( data => {
-      this.allItems = data;
-      this.setPage(1);
-    },
-                                                  error => {}
-                                                  );
   }
 
   activeUsers() {
+    /*
     this.adminService.getUsers()
-        .subscribe(data => {this.users = data; },
+        .subscribe(data => {this.users = data; this.allItems = data; this.pagedItems = data; },
           error => { this.alertService.error = error; } );
+     */
+    const tempusers = this.adminService.getUsers();
+    this.users = tempusers;
     this.flag = true;
   }
 
@@ -45,12 +38,36 @@ export class AdminComponent implements OnInit {
     this.alertService.success(' Comming soon !!! ') ;
   }
 
-  setPage(page: number) {
-    // get pager object from service
-    this.pager = this.pagerService.getPager(this.allItems.length, page);
-
-    // get current page of items
-    this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  back() {
+    this.flag = false;
+  }
+back1() {
+  this.flag1 = false;
 }
+
+getImages() {
+  let tempimages;
+  let temp = { fieldname: '' ,
+  originalname: '',
+  destination: 'uploads/',
+  filename: '',
+  path: ''};
+
+  this.adminService.getImages()
+        .subscribe(data => { this.images = data; },
+          error => { this.alertService.error = error ; } );
+
+          /*
+  tempimages.forEach(e1 => {
+    console.log('e1 : ' + e1);
+    temp = { fieldname: e1.fieldname, originalname: e1.originalname,
+            destination: e1.destination, filename: e1.filename,
+          path: e1.path + '.jpg'};
+    this.images.push(temp);
+  });
+  */
+  this.flag1 = true;
+}
+
 
 }

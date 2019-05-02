@@ -1,40 +1,23 @@
-<p>
-  admin works!
-</p>
+
+<img src="assets\images\img_avatar.png" alt="Avatar" style="width:200px">
 <div *ngIf="!flag">
 <button (click)="activeUsers()">List of Users</button>
 </div>
 <div *ngIf="flag">
+    <button (click)="back()">back</button>
   <div *ngFor="let user of users">{{user.username}} <button (click)="getInfo(user)">GetInfo</button>
   </div>
 </div>
 
 <div>
-    <div class="container">
-        <div class="text-center">
-
-            <!-- items being paged -->
-            <div *ngFor="let item of pagedItems">{{item.name}}</div>
-
-            <!-- pager -->
-            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(1)">First</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === 1}">
-                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-                </li>
-                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-                    <a (click)="setPage(page)">{{page}}</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
-                </li>
-                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-                    <a (click)="setPage(pager.totalPages)">Last</a>
-                </li>
-            </ul>
-        </div>
+    <div *ngIf="!flag1"> 
+        <button (click)="getImages()">List of Image </button>
     </div>
-    <hr />
+    <div *ngIf="flag1">
+        <button (click)="back1()">back</button>
+        <div *ngFor="let i of images"><img [src]=i.path>
+            {{i | json}}
+        </div>
+      
+    </div>
 </div>

@@ -14,6 +14,8 @@ import { AlertComponent } from './_components';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { from } from 'rxjs';
 import { AdminComponent } from './admin/admin.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AdminComponent } from './admin/admin.component';
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    AdminComponent
+    AdminComponent,
+    PaginationComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

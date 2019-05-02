@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 
 import { User } from '../_models';
 import { config } from '../app.config';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
     constructor(private http: HttpClient) { }
 
-    getAll() {
-        return this.http.get<User[]>(`${config.apiUrl}/users`);
+    getAll(): Observable<[]> {
+        return this.http.get<[]>(`${config.apiUrl}/users`);
     }
 
     getById(id: number) {
